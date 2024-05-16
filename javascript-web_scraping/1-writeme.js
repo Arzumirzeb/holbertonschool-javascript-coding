@@ -1,4 +1,5 @@
 #!/usr/bin/node
+/* eslint-disable */
 
 const fs = require('fs');
 
@@ -10,5 +11,4 @@ fs.writeFile(filePath, content, 'utf-8', (err) => {
     console.error(err);
     return;
   }
-  console.log('The file has been successfully written.');
 });
