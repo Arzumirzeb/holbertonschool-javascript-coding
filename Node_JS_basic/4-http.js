@@ -1,13 +1,22 @@
 /* eslint-disable */
 const http = require('http');
 
-const app = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello Holberton School!\n');
+const PORT = 1245;
+const HOST = 'localhost';
+const app = http.createServer();
+
+
+app.on('request', (_, res) => {
+  const responseText = 'Hello Holberton School!';
+
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', responseText.length);
+  res.statusCode = 200;
+  res.write(Buffer.from(responseText));
 });
 
-app.listen(1245, () => {
-  console.log('Server is running on http://localhost:1245');
+app.listen(PORT, HOST, () => {
+  process.stdout.write(`Server listening at -> http://${HOST}:${PORT}\n`);
 });
 
 module.exports = app;
